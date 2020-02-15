@@ -29,37 +29,17 @@
     }
 ?>
 
-<!DOCTYPE html>
-
 <html>
 <body>
-    <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" method="post">
-        Name: <input type="text" name="name" value="<?php echo $name;?>"><br>
-        Job: <input type="text" name="job" value="<?php echo $job;?>"><br>
-        
-        Rebirth status:
-        <input type="radio" name="rebirth" value="trans"
-        <?php if (isset($rebirth) && $rebirth=="trans") echo "checked";?>
-        value="trans">Trans
-        <input type="radio" name="rebirth" 
-        <?php if (isset($rebirth) && $rebirth=="expand") echo "checked";?>
-        value="expand">Expanded
-        <input type="radio" name="rebirth" 
-        <?php if (isset($rebirth) && $rebirth=="other") echo "checked";?>
-        value="other">Other
-        <br>
-        <input type="submit"><hr>
-    </form>
-
     Welcome, 
     <?php echo $job . $jobError . " " .  $name; ?>
     <span class="error"><?php echo $nameError;?></span>
-    <br>
+    <br><br>
 
     You have been registered as 
     <?php echo $rebirth; ?>
     <span class="error"><?php echo $rebirthError;?></span>
     <?php echo "class."; ?>
     <br><br>
-<body>
-<html>
+</body>
+</html>
