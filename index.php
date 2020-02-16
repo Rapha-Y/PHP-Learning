@@ -1,65 +1,69 @@
-<?php
-    $nameError = $jobError = $rebirthError = '';
-    $name = $job = $rebirth = '';
-
-    if ($_SERVER["REQUEST_METHOD"] == "POST") {
-        if (empty($_POST["name"])) {
-            $nameError = "you forgetful prick, you need to input a name";
-        } else {
-            $name = test_input($_POST["name"]);
-        }
-        
-        $job = test_input($_POST["job"]);
-        if (!preg_match("/^[a-zA-Z ]*$/", $job)) {
-            $jobError = " (...is what I'd call you, but that's not a class that exists)";
-        }
-
-        if (empty($_POST["rebirth"])) {
-            $rebirthError = "rebirth-input-forgetting";
-        } else {
-            $rebirth = test_input($_POST["rebirth"]);
-        }
-    }
-
-    function test_input($data) {
-        $data = trim($data);
-        $data = stripslashes($data);
-        $data = htmlspecialchars($data);
-        return $data;
-    }
-?>
-
 <!DOCTYPE html>
 
-<html>
-<body>
-    <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" method="post">
-        Name: <input type="text" name="name" value="<?php echo $name;?>"><br>
-        Job: <input type="text" name="job" value="<?php echo $job;?>"><br>
-        
-        Rebirth status:
-        <input type="radio" name="rebirth" value="trans"
-        <?php if (isset($rebirth) && $rebirth=="trans") echo "checked";?>
-        value="trans">Trans
-        <input type="radio" name="rebirth" 
-        <?php if (isset($rebirth) && $rebirth=="expand") echo "checked";?>
-        value="expand">Expanded
-        <input type="radio" name="rebirth" 
-        <?php if (isset($rebirth) && $rebirth=="other") echo "checked";?>
-        value="other">Other
+<?php
+    $cookie_name = "name";
+    $cookie_value = "Sigma";
+    setcookie($cookie_name, $cookie_value, time() + (60), "/");
+
+    session_start();
+?>  
+
+<html lang="us">
+    <head>
+
+    </head>
+    <body>
+        <?php 
+            $_SESSION["favclass"] = "mechanic";
+            $_SESSION["favanimal"] = "cat";
+            echo "Sessions variables are set.<br>";
+        ?>
+        <?php
+            include "shout.php";
+            
+            date_default_timezone_set("America/Sao_Paulo");
+            echo "You have accessed this page at " . date("H:i:s") . " of " . date("d/m/Y") . ", São Paulo time.<p>";
+
+            $txtFile = fopen("acronyms.txt", "r") or die("Unable to open acronyms.txt");
+            while (!feof($txtFile)) {
+                echo fgets($txtFile) . "<br>";
+            }
+            fclose($txtFile);
+        ?>
+
         <br>
-        <input type="submit"><hr>
-    </form>
+        <form action="upload.php" method="post" enctype="multipart/form-data">
+            Select image to upload:<br>
+            <input type="file" name="imageFile" id="imageFile"><br>
+            <input type="submit" name="Upload Image" name="submit"><p>
+        </form>
 
-    Welcome, 
-    <?php echo $job . $jobError . " " .  $name; ?>
-    <span class="error"><?php echo $nameError;?></span>
-    <br>
+        <?php
+            if (count($_COOKIE) > 0) {
+                echo "Cookies are enabled.<br>";
+                if (!isset($_COOKIE[$cookie_name])) {
+                    echo "Cookie named '" . $cookie_name . "' isn't set.";
+                } else {
+                    echo "Cookie named '" . $cookie_name . "' is set.<br>";
+                    echo "Value is " . $_COOKIE[$cookie_name];
+                }
+            } else {
+                echo "Cookies are disabled. ";
+            }
+        ?>
 
-    You have been registered as 
-    <?php echo $rebirth; ?>
-    <span class="error"><?php echo $rebirthError;?></span>
-    <?php echo "class."; ?>
-    <br><br>
-<body>
-<html>
+        <?php
+            $ip = "127.0.0.1";
+            if (!filter_var($ip, FILTER_VALIDATE_IP) === false) {
+                echo("<hr>$ip is a valid IP address");
+            } else {
+                echo("<hr>$ip isn't a valid IP address");
+            }
+        ?>
+        <p>
+        <?php
+            $numbers = array(1,2,3,4,5,6,7);
+            echo json_encode($numbers);
+        ?>
+    </body>
+</html>

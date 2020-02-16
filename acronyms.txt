@@ -1,0 +1,7 @@
+RK - Rune Knight
+WL - Warlock
+AB - Arch Bishop
+GX - Guillotine Cross
+RG - Royal Guard
+SC - Shadow Chaser
+SN - Super Novice
