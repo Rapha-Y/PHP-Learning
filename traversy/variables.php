@@ -5,7 +5,8 @@
 
     $hello = 'Hello';
     $world = 'World';
-    #$greeting = $hello . ' ' . $world
+    
+    #Alt.: $greeting = $hello . ' ' . $world
     $greeting = "$hello $world";
     
     $quotePhrase = 'They\'re dead';
@@ -13,11 +14,11 @@
     $pi = 3.14;
     $bool = true;
 
-    //echo $sum;
-    //echo $greeting;
-    //echo $quotePhrase;
-    //echo $pi
-    //echo $bool
+    echo $sum . ' ';
+    echo $greeting . ' ';
+    echo $quotePhrase . ' ';
+    echo $pi . ' ';
+    echo $bool . ' ';
     
     define('WEEABISM', 'Hai domo, Kizuna AI desu!');
 
