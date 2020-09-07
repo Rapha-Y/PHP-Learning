@@ -1,12 +1,16 @@
-<nav class="navbar navbar-default">
+<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
     <div class="container">
-        <div class="navbar-header">
-            <a href="#" class="navbar-brand">PHP blog</a>
-        </div>
-        <div id="navbar">
-            <ul class="nav navbar-nav">
-                <li>
-                    <a href="<?php echo ROOT_URL; ?>">Home</a>
+        <a class="navbar-brand" href="#">PHP blog</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarColor01">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="<?php echo ROOT_URL; ?>">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="<?php echo ROOT_URL; ?>addpost.php">Add Post</a>
                 </li>
             </ul>
         </div>
